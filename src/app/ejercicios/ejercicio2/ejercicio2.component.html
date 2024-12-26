@@ -1,0 +1,85 @@
+<div class="bg-dark text-light container pt-5 mb-5">
+    <h1 class="text-center display-2">Ejercicio 2</h1>
+    <div class="row">
+        <p>
+            Construya un objeto que reciba como parámetro un string y reconozca mediante
+            expresiones regulares los siguientes criterios.
+            El objeto debe tener los siguientes métodos suponiendo la siguiente definición.
+            <i>
+                s = MyArray.new(string)
+            </i>
+        </p>
+        <div class="ml-4">
+            <ol>
+                <li><i>s.operation</i> -> Devuelve un booleano según el siguiente criterio
+                    <ul>
+                        <li>True: Si el
+                            texto recibido corresponde a una operación aritmética (+, -, /, *)
+                            matemática.</li>
+                        <li>False: Si el texto recibido no corresponde a ninguna operación
+                            aritmética matemática o se encuentra mal construída.</li>
+                    </ul>
+                </li>
+                <li><i>s.compute</i> -> Devuelve el valor computado de la operación aritmética, se deben
+                    considerar los paréntesis &#39;(&#39; &#39;)&#39; como agrupaciones de la operación. Devuelve
+                    false en el caso de que la operación no pueda ser computada por paréntesis
+                    mal agrupados o en el caso de que s.operation sea false.</li>
+            </ol>
+
+        </div>
+        <p>
+            Parámetros para tener en cuenta:
+        </p>
+        <div class="ml-4">
+            <ul>
+                <li>
+                    Puede utilizar el lenguaje de programación que
+                    desee y con el que se sienta más cómodo.
+                </li>
+                <li>
+                    Considere los siguientes casos como ejemplo. Pasar los casos de ejemplo no necesariamente definirá
+                    que el
+                    ejercicio está
+                    bien construído. Pruebe tantos arreglos o matrices como considere necesario.
+                </li>
+            </ul>
+        </div>
+
+        <h2 class="text-center display-4">Solución:</h2>
+        <cdk-accordion class="example-accordion">
+            @for (item of items; track item; let index = $index) {
+            <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button"
+                tabindex="0" [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+                [attr.aria-controls]="'accordion-body-' + index">
+                <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+                    Prueba {{ index+1 }}
+                    <span class="example-accordion-item-description">
+                        Click para {{ accordionItem.expanded ? 'cerrar' : 'abrir' }}
+                    </span>
+                </div>
+                <div class="example-accordion-item-body" role="region"
+                    [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
+                    [attr.aria-labelledby]="'accordion-header-' + index">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <h4>Matriz</h4>
+                            <code>
+                                texto = "{{ item.operation  }}"
+                            </code>
+                        </div>
+                        <div class="col-md-12 mt-2" [innerHTML]="item.resultado">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" (click)="calcular(item.operation,index)">
+                                Ejecutar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </cdk-accordion-item>
+            }
+        </cdk-accordion>
+    </div>
+</div>

@@ -1,0 +1,39 @@
+<div class="container mt-4">
+    <h2 class="text-center">Lista de Artículos</h2>
+    
+    <div class="mb-3 text-center">
+      <a class="btn btn-primary" routerLink="/articulos/registro">Crear Artículo</a>
+      <a class="mx-2 btn btn-warning" routerLink="/tiendas/tiendas">Ver Tiendas</a>
+    </div>
+  
+    <ng-container *ngIf="articulos.length > 0; else noArticulos">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let articulo of articulos; let i = index">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h5 class="my-0 font-weight-normal">{{ articulo.name }}</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">ID: {{ articulo.id }}</p>
+              <h6>Precio:</h6>
+              <p>${{ articulo.price | number:'1.2-2' }}</p>
+              <h6>Tienda:</h6>
+              <p>{{ getStoreName(articulo.store_id) }}</p>
+  
+              <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-warning btn-sm" [routerLink]="['/articulos/actualizar', articulo.name]">Actualizar</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteArticulo(articulo.name)">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  
+    <ng-template #noArticulos>
+      <div class="alert alert-info text-center">
+        No hay artículos disponibles.
+      </div>
+    </ng-template>
+  </div>
+  

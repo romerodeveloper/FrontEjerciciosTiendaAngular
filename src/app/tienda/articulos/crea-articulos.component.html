@@ -1,0 +1,47 @@
+<div class="container align-items-center">
+    <div class="card m-auto col-md-8 col-12 col-lg-6 p-4 mt-5 shadow">
+        <h2 class="w-100 text-center mt-2 display-4">Formulario de articulos</h2>
+
+        <form>
+            <div class="form-group my-3">
+                <label for="username" class="my-2"><b>Nombre articulo</b></label>
+                <input class="form-control" [(ngModel)]="articuloObj.name" type="text"
+                    placeholder="Ingresa nombre articulo" name="name" required>
+            </div>
+            <div class="form-group my-3">
+                <label for="username" class="my-2"><b>Precio articulo</b></label>
+                <input class="form-control" [(ngModel)]="articuloObj.price" type="text" placeholder="Ingresa Precio"
+                    name="price" required>
+            </div>
+            <div class="form-group my-3">
+                <label for="store_id" class="my-2"><b>Tienda artículo</b></label>
+                <select class="form-control" [(ngModel)]="articuloObj.store_id" name="store_id" required>
+                    <option value="" disabled selected>Selecciona una tienda</option>
+                    <option *ngFor="let tienda of tiendas" [value]="tienda.id">{{ tienda.name }}</option>
+                </select>
+            </div>
+
+            <div *ngIf="tiendas.length === 0">
+                <p>Cargando tiendas...</p>
+              </div>
+              
+            <div class="form-group my-3">
+                <button class="btn btn-success mx-2" (click)="registro(content)" type="submit">Crear</button>
+                <a class="btn btn-light mx-2" routerLink="/articulos/articulos">Regresar a articulos</a>
+            </div>
+        </form>
+
+    </div>
+</div>
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">{{modal_info.title}}</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <p>{{modal_info.body}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="modal.close('Close click')">Close</button>
+    </div>
+</ng-template>

@@ -1,0 +1,44 @@
+<div class="container mt-4">
+    <h2 class="text-center">Lista de Tiendas</h2>
+    
+    <div class="mb-3 text-center">
+      <a class="btn btn-primary" routerLink="/tiendas/registro">Crear Tienda</a>
+      <a class="mx-2 btn btn-warning" routerLink="/articulos/articulos">Ver Articulos</a>
+    </div>
+  
+    <!-- Mostrar tiendas si existen -->
+    <ng-container *ngIf="tiendas.length > 0; else noTiendas">
+      <div class="row">
+        <div class="col-md-4" *ngFor="let tienda of tiendas; let i = index">
+          <div class="card mb-4 shadow-sm">
+            <div class="card-header">
+              <h5 class="my-0 font-weight-normal">{{ tienda.name }}</h5>
+            </div>
+            <div class="card-body">
+              <p class="card-text">ID: {{ tienda.id }}</p>
+              <h6>Artículos:</h6>
+              <ul>
+                <li *ngFor="let articulo of tienda.articulos">
+                  {{ articulo.name }} - ${{ articulo.price | number:'1.2-2' }}
+                </li>
+              </ul>
+  
+              <!-- Botones de actualizar y eliminar -->
+              <div class="d-flex justify-content-between mt-3">
+                <button class="btn btn-warning btn-sm" [routerLink]="['/tiendas/actualizar', tienda.name]">Actualizar</button>
+                <button class="btn btn-danger btn-sm" (click)="deleteTienda(tienda.name)">Eliminar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  
+    <!-- Plantilla para cuando no hay tiendas -->
+    <ng-template #noTiendas>
+      <div class="alert alert-info text-center">
+        No hay tiendas disponibles.
+      </div>
+    </ng-template>
+  </div>
+  

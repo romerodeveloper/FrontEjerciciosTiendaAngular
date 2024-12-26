@@ -1,0 +1,77 @@
+<div class="bg-dark text-light container pt-5 mb-5">
+    <h1 class="text-center display-2">Ejercicio 1</h1>
+    <div class="row">
+        <p>
+            Construya un objeto que reciba un arreglo o una matriz de dimensión N el cual
+            contiene números de tipo entero. <br>
+            El objeto debe tener los siguientes métodos suponiendo la siguiente definición.
+            <i>o = MyMAtrix.new(matrix)</i>
+        </p>
+        <div class="ml-4">
+            <ol>
+                <li><i>o.dimension</i> -> Devuelve el número entero que define la dimensión del
+                    arreglo o matriz en su mayor profundidad.</li>
+                <li><i>o.straight</i> -> Devuelve true o false según el siguiente criterio: -True: Si el
+                    arreglo o matriz contiene la misma cantidad de elementos en cada una de
+                    sus dimensiones (Matriz uniforme). -False: Caso contrario.</li>
+                <li><i>o.compute</i> -> Devuelve el número entero resultado de la suma de todos los
+                    números incluídos en la matriz sin importar el tamaño o dimensión.</li>
+            </ol>
+
+        </div>
+        <p>
+            Parámetros para tener en cuenta:
+        </p>
+        <div class="ml-4">
+            <ul>
+                <li>
+                    Puede utilizar el lenguaje de programación que
+                    desee y con el que se sienta más cómodo.
+                </li>
+                <li>
+                    Considere los siguientes casos como ejemplo. Pasar los casos de ejemplo no necesariamente definirá
+                    que el
+                    ejercicio está
+                    bien construído. Pruebe tantos arreglos o matrices como considere necesario.
+                </li>
+            </ul>
+        </div>
+
+        <h2 class="text-center display-4">Solución:</h2>
+        <cdk-accordion class="example-accordion">
+            @for (item of items; track item; let index = $index) {
+            <cdk-accordion-item #accordionItem="cdkAccordionItem" class="example-accordion-item" role="button"
+                tabindex="0" [attr.id]="'accordion-header-' + index" [attr.aria-expanded]="accordionItem.expanded"
+                [attr.aria-controls]="'accordion-body-' + index">
+                <div class="example-accordion-item-header" (click)="accordionItem.toggle()">
+                    Prueba {{ index+1 }}
+                    <span class="example-accordion-item-description">
+                        Click para {{ accordionItem.expanded ? 'cerrar' : 'abrir' }}
+                    </span>
+                </div>
+                <div class="example-accordion-item-body" role="region"
+                    [style.display]="accordionItem.expanded ? '' : 'none'" [attr.id]="'accordion-body-' + index"
+                    [attr.aria-labelledby]="'accordion-header-' + index">
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <h4>Matriz</h4>
+                            <code>
+                                array = {{ item.matrix_txt  }}
+                            </code>
+                        </div>
+                        <div class="col-md-12 mt-2" [innerHTML]="item.resultado">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <button class="btn btn-success" (click)="calcular(item.matrix,index)">
+                                Ejecutar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </cdk-accordion-item>
+            }
+        </cdk-accordion>
+    </div>
+</div>
